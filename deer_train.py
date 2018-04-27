@@ -78,14 +78,18 @@ def extract_train_position(train):
 
 def ml_speed_decide(deer_position,train_position):
 
+    #RULES OF THE GAME HAS TO BE DEFINED HERE TO FORCE LIMITATIONS#
+
     ml_influence_range = [-5,-4,-3,-2,-1,0,1,2,3,4,5]
 
     return ml_influence
 
 def realtime_check(deers,train):
 
+    #BEFORE GOING ON WITH THE CHECK, LINES BELOW CHECKS THE CURRENT POSITION OF THE DEERS AND TRAIN BASED ON THAT TRIES TO ASSIGN A VALUE FOR ACCELERATION AND ASSIGNS IT
+    #TO THE NEW VALUE OF TRAIN VELOCITY. ML HAS TO SOMEHOW INFLUENCE ml_speed_decide FUNCTION AND CHOOSE A VALUE WITHIN THE ml_influence_range (acc/deceleration value)
+
     ml_acceleration_value=ml_speed_decide(extract_deer_position(deers),extract_train_position(train))
-    
     train['train_velocity']=train['train_velocity']+ml_acceleration_value
 
     for deer_x in deers:
